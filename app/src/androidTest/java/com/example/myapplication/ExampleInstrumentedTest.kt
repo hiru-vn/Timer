@@ -1,4 +1,4 @@
-package com.example.timer
+package com.example.myapplication
 
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
-        assertEquals("com.example.timer", appContext.packageName)
+        assertEquals("com.example.myapplication", appContext.packageName)
     }
 }
