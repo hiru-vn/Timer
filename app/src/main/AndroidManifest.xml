@@ -13,6 +13,12 @@
                 android:name=".util.TimerNotificationActionReceiver"
                 android:enabled="true"
                 android:exported="true">
+            <intent-filter>
+                <action android:name="stop"></action>
+                <action android:name="start"></action>
+                <action android:name="pause"></action>
+                <action android:name="resume"></action>
+            </intent-filter>
         </receiver>
         <receiver
                 android:name=".TimerExpiredReceiver"

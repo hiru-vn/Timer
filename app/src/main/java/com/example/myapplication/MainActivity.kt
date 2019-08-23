@@ -6,16 +6,15 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.os.health.TimerStat
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
+import com.example.myapplication.util.NotificationUtil
 import com.example.myapplication.util.PrefUtil
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import java.util.*
-import kotlin.system.measureTimeMillis
 
 class MainActivity : AppCompatActivity() {
     enum class TimerState{
@@ -68,15 +67,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun cancelTimer() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
     override fun onResume(){
         super.onResume()
         initTimer()
         removeAlarm(this)
-        //TODO: remove background
+        NotificationUtil.hideTimerNotification(this)
     }
 
     private fun initTimer() {
@@ -165,9 +160,9 @@ class MainActivity : AppCompatActivity() {
         if (timerState == TimerState.Play){
             timer.cancel()
             val wakeUpTime = setAlarm(this, nowSeconds, secondsRemanining)
-            //TODO: show notification
+            NotificationUtil.showTimerRunning(this, wakeUpTime)
         } else if(timerState == TimerState.Pause) {
-            //TODO: show notification
+            NotificationUtil.showTimerPause(this)
         }
         PrefUtil.setPreviousTimerLengthSecond(timerCountLength, this)
         PrefUtil.setSecondRemaining(secondsRemanining,this)
