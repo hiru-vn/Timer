@@ -34,13 +34,12 @@ class MainActivity : AppCompatActivity() {
             updateButton()
         }
         fab_pause.setOnClickListener { view ->
-            cancelTimer()
-            timerState = TimerState.Play
+            timer.cancel()
+            timerState = TimerState.Pause
             updateButton()
         }
         fab_stop.setOnClickListener { view ->
-            cancelTimer()
-            timerState = TimerState.Play
+            timer.cancel()
             onTimerFinished()
         }
     }
@@ -63,9 +62,8 @@ class MainActivity : AppCompatActivity() {
         else
             setPreTimerLength()
         secondsRemanining = if (timerState == TimerState.Play || timerState == TimerState.Pause)
-            PrefUtil.getSecondRemaining(this)
-        else
-            timerCountLength
+                                PrefUtil.getSecondRemaining(this)
+                            else timerCountLength
         //TODO: change second remain to background timer stop
 
         if (timerState == TimerState.Play)
