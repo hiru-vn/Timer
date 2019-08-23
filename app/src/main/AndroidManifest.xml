@@ -10,6 +10,11 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <receiver
+                android:name=".util.TimerNotificationActionReceiver"
+                android:enabled="true"
+                android:exported="true">
+        </receiver>
+        <receiver
                 android:name=".TimerExpiredReceiver"
                 android:enabled="true"
                 android:exported="true">
