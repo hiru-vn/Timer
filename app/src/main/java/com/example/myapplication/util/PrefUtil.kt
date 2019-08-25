@@ -7,9 +7,11 @@ import com.example.myapplication.MainActivity
 class PrefUtil {
     companion object{
         fun getTimerLength(context: Context) : Int{
-            return 1
+            val preference = PreferenceManager.getDefaultSharedPreferences(context)
+            return preference.getInt(TIMER_LENGTH_ID, 10)
         }
         private const val PRE_TIMER_LENGTH_SECONDS_ID = "com.example.myapplication.util.per_timer_length_seconds_id"
+        private const val TIMER_LENGTH_ID = "com.example.myapplication.timer_length"
 
         fun getPreviousTimerLengthSecond(context: Context): Long{
             val preference = PreferenceManager.getDefaultSharedPreferences(context)
